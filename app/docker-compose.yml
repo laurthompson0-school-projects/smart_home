@@ -1,0 +1,15 @@
+version: "3"
+services:
+  database:
+    image: postgres
+    env_file:
+      - db.env
+    volumes:
+      - ./init_schema.sql:/docker-entrypoint-initdb.d/01_init_schema.sql # Build DB schema on startup
+      - ./init_data.sql:/docker-entrypoint-initdb.d/02_init_data.sql # Insert data into DB on startup
+    ports:
+      - 5432:5432
+  redis:
+    image: redis
+    ports:
+      - 6379:6379

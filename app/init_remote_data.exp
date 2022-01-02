@@ -1,0 +1,20 @@
+#!/usr/bin/expect -f
+
+set timeout -1
+set password "Team3"
+
+puts "COPYING DATA INITIALIZATION SCRIPT TO SERVER..."
+spawn scp init_data.sql Team3@138.26.48.83:~/init_data.sql
+expect "password:"
+send "${password}\r"
+expect eof
+
+puts "\nRUNNING DATA INITIALIZATION SCRIPT ON SERVER..."
+spawn ssh Team3@138.26.48.83
+expect "password:"
+send "${password}\r"
+expect "$ "
+send "psql -d Team3DB -f ./init_data.sql\r"
+expect "$ "
+send "exit\r"
+expect eof
