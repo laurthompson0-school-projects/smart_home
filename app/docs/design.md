@@ -7,7 +7,7 @@
 - Karen Horton
 - Eric Latham
 - Brittany Latham
-- Laura Thompson
+- Laurence Thompson
 
 ## High-Level Runtime Model
 
